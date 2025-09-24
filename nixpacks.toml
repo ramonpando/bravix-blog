@@ -8,4 +8,4 @@ cmd = "npm install"
 cmd = "npm run build"
 
 [start]
-cmd = "npx serve dist -l 4321"
+cmd = "npm start"
