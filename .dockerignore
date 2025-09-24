@@ -1,3 +1,4 @@
+# Build output
 node_modules
 .git
 .astro
@@ -6,3 +7,4 @@ node_modules
 .env*
 .DS_Store
 *.log
+# DO NOT ignore dist/ - we need it for static deployment
