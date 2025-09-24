@@ -1,16 +1,18 @@
-FROM node:18-alpine
-
-# Install serve package globally
-RUN npm install -g serve
+FROM busybox:latest
 
 # Copy the built static files
-COPY dist/ /app
+COPY dist/ /www
 
-# Set working directory
-WORKDIR /app
+# Create a simple HTTP server script
+RUN echo '#!/bin/sh' > /serve.sh && \
+    echo 'cd /www' >> /serve.sh && \
+    echo 'while true; do' >> /serve.sh && \
+    echo '  echo -e "HTTP/1.1 200 OK\r\n\r\n$(cat index.html)" | nc -l -p 80 -q 1' >> /serve.sh && \
+    echo 'done' >> /serve.sh && \
+    chmod +x /serve.sh
 
 # Expose port 80
 EXPOSE 80
 
-# Start serve on port 80
-CMD ["serve", "-s", ".", "-p", "80"]
+# Start simple server
+CMD ["/serve.sh"]
