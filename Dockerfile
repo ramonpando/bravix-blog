@@ -14,11 +14,15 @@ COPY . .
 # Build the app
 RUN npm run build
 
-# Install serve to serve static files
-RUN npm install -g serve
+# Install serve globally for serving static files
+RUN npm install -g serve@14.2.1
 
-# Expose port
+# Expose port 4321
 EXPOSE 4321
 
-# Start the application
-CMD ["serve", "dist", "-l", "4321"]
+# Health check
+HEALTHCHECK --interval=30s --timeout=3s --start-period=5s --retries=3 \
+  CMD curl -f http://localhost:4321/ || exit 1
+
+# Start the application with serve command
+CMD ["serve", "dist", "-l", "4321", "-s"]
