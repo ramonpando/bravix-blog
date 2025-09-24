@@ -5,13 +5,20 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="robots" content="noindex" />
   <title>Bravix Blog - Admin</title>
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+  <meta http-equiv="Pragma" content="no-cache">
+  <meta http-equiv="Expires" content="0">
 </head>
 <body>
   <!-- Include the script that builds the page and powers Decap CMS -->
   <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
   <script>
+    // Prevent automatic config loading
     window.CMS_MANUAL_INIT = true;
-    window.CMS.init({
+
+    // Wait for DOM to be ready
+    document.addEventListener('DOMContentLoaded', function() {
+      window.CMS.init({
       config: {
         backend: {
           name: 'github',
@@ -37,7 +44,7 @@
             {label: 'Layout', name: 'layout', widget: 'hidden', default: '../../layouts/BlogPost.astro'}
           ]
         }]
-      }
+      });
     });
   </script>
 </body>
