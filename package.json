@@ -5,7 +5,7 @@
   "license": "MIT",
   "scripts": {
     "dev": "astro dev",
-    "start": "astro dev",
+    "start": "serve dist -l 4321 -s",
     "build": "astro build --config astro.config.prod.mjs",
     "build:full": "astro build",
     "preview": "astro preview"
