@@ -5,121 +5,40 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="robots" content="noindex" />
   <title>Bravix Blog - Admin</title>
-  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
-  <meta http-equiv="Pragma" content="no-cache">
-  <meta http-equiv="Expires" content="0">
-  <style>
-    body {
-      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-      margin: 0;
-      padding: 40px;
-      background: #f5f5f5;
-    }
-    .container {
-      max-width: 800px;
-      margin: 0 auto;
-      background: white;
-      padding: 40px;
-      border-radius: 8px;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-    }
-    .header {
-      text-align: center;
-      margin-bottom: 40px;
-    }
-    .logo {
-      font-size: 24px;
-      font-weight: bold;
-      color: #333;
-      margin-bottom: 10px;
-    }
-    .subtitle {
-      color: #666;
-      margin-bottom: 30px;
-    }
-    .login-btn {
-      display: inline-block;
-      background: #24292e;
-      color: white;
-      padding: 12px 24px;
-      text-decoration: none;
-      border-radius: 6px;
-      font-weight: 500;
-      transition: background 0.2s;
-    }
-    .login-btn:hover {
-      background: #444;
-    }
-    .status {
-      margin-top: 20px;
-      padding: 15px;
-      border-radius: 4px;
-      text-align: center;
-    }
-    .status.loading {
-      background: #e3f2fd;
-      color: #1976d2;
-    }
-    .status.success {
-      background: #e8f5e8;
-      color: #2e7d32;
-    }
-    .status.error {
-      background: #ffebee;
-      color: #c62828;
-    }
-  </style>
 </head>
 <body>
-  <div class="container">
-    <div class="header">
-      <div class="logo">🚀 Bravix Blog</div>
-      <div class="subtitle">Content Management System</div>
-    </div>
-
-    <div style="text-align: center;">
-      <a href="https://scraper.bravix.com.mx/oauth/github" class="login-btn" id="loginBtn">
-        📝 Login with GitHub
-      </a>
-    </div>
-
-    <div id="status" class="status" style="display: none;"></div>
-  </div>
-
   <script>
-    function showStatus(message, type) {
-      const status = document.getElementById('status');
-      status.textContent = message;
-      status.className = 'status ' + type;
-      status.style.display = 'block';
-    }
+    window.CMS_MANUAL_INIT = true;
+  </script>
+  <!-- Include the script that builds the page and powers Decap CMS -->
+  <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
+  <script type="module">
+    const config = {
+      backend: {
+        name: 'test-repo'
+      },
+      media_folder: 'public/assets/blog',
+      public_folder: '/blog/assets/blog',
+      collections: [
+        {
+          name: 'posts',
+          label: 'Blog Posts',
+          folder: 'src/pages/posts',
+          create: true,
+          slug: '{{slug}}',
+          fields: [
+            { label: 'Title', name: 'title', widget: 'string' },
+            { label: 'Publish Date', name: 'publishDate', widget: 'datetime' },
+            { label: 'Description', name: 'description', widget: 'string', required: false },
+            { label: 'Author', name: 'author', widget: 'string', default: 'Bravix Team' },
+            { label: 'Body', name: 'body', widget: 'markdown' },
+            { label: 'Layout', name: 'layout', widget: 'hidden', default: '../../layouts/BlogPost.astro' }
+          ]
+        }
+      ]
+    };
 
-    // Check if we're coming back from OAuth
-    const urlParams = new URLSearchParams(window.location.search);
-    if (urlParams.get('code')) {
-      showStatus('Authentication successful! Redirecting to CMS...', 'success');
-      setTimeout(() => {
-        // Here we would normally initialize the CMS
-        showStatus('CMS would load here. OAuth flow completed!', 'success');
-      }, 1000);
-    }
-
-    // Listen for OAuth messages
-    window.addEventListener('message', function(event) {
-      if (event.data.includes && event.data.includes('authorization:github:success')) {
-        showStatus('GitHub authentication successful!', 'success');
-        // Here we would initialize the CMS with the token
-        setTimeout(() => {
-          showStatus('CMS ready! You can now manage your blog posts.', 'success');
-        }, 1000);
-      }
-    });
-
-    document.getElementById('loginBtn').addEventListener('click', function(e) {
-      e.preventDefault();
-      showStatus('Redirecting to GitHub...', 'loading');
-      window.open('https://scraper.bravix.com.mx/oauth/github', 'oauth', 'width=500,height=600');
-    });
+    window.CMS.init({ config });
   </script>
 </body>
 </html>
