@@ -20,8 +20,7 @@ export default defineConfig({
       config: {
         // Use Netlify's "Git Gateway" authentication and target our default branch
         backend: {
-          name: 'git-gateway',
-          branch: 'main',
+          name: 'test-repo',
         },
         // Configure where our media assets are stored & served from
         media_folder: 'public/assets/blog',
