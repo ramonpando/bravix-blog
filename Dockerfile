@@ -1,13 +1,13 @@
-FROM nginx:1.25-alpine
-
-# Copy custom nginx configuration
-COPY nginx.conf /etc/nginx/conf.d/default.conf
+FROM httpd:2.4-alpine
 
 # Copy the built static files
-COPY dist/ /usr/share/nginx/html/
+COPY dist/ /usr/local/apache2/htdocs/
+
+# Create simple Apache config
+RUN echo "ServerName localhost" >> /usr/local/apache2/conf/httpd.conf
 
 # Expose port 80
 EXPOSE 80
 
-# Start nginx
-CMD ["nginx", "-g", "daemon off;"]
+# Start Apache
+CMD ["httpd-foreground"]
