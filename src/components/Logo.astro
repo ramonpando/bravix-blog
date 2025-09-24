@@ -1,0 +1,25 @@
+---
+import bravixLogo from '../assets/Bravix logo(6).png';
+---
+
+<div class="logo">
+	<img src={bravixLogo} alt="Bravix" class="logo-img" />
+</div>
+
+<style lang="scss">
+	.logo {
+		margin: 2rem auto;
+		text-align: center;
+	}
+
+	.logo-img {
+		height: 60px;
+		width: auto;
+	}
+
+	@media (min-width: 40em) {
+		.logo-img {
+			height: 80px;
+		}
+	}
+</style>

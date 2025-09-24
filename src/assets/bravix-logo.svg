@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 260 120" role="img" aria-labelledby="title">
+  <title id="title">Bravix logo</title>
+  <defs>
+    <linearGradient id="bravixGradient" x1="0" y1="0" x2="260" y2="0" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#a02bff" />
+      <stop offset="1" stop-color="#6d3bff" />
+    </linearGradient>
+    <mask id="bravixMask" maskUnits="userSpaceOnUse" x="0" y="0" width="260" height="120">
+      <rect width="260" height="120" fill="#000" />
+      <path
+        d="M60 18C38.356 18 20 36.356 20 58C20 79.644 38.356 98 60 98C82.356 98 102.626 77.056 130 50C157.374 77.056 177.644 98 200 98C221.644 98 240 79.644 240 58C240 36.356 221.644 18 200 18C177.644 18 157.374 38.944 130 66C102.626 38.944 82.356 18 60 18Z"
+        fill="#fff"
+      />
+      <path
+        d="M60 38C49.402 38 40 47.402 40 58C40 68.598 49.402 78 60 78C71.274 78 84.09 67.264 101.5 50C84.09 32.736 71.274 38 60 38Z"
+        fill="#000"
+      />
+      <path
+        d="M200 38C189.402 38 180 47.402 180 58C180 68.598 189.402 78 200 78C210.598 78 220 68.598 220 58C220 47.402 210.598 38 200 38Z"
+        fill="#000"
+      />
+    </mask>
+  </defs>
+  <rect width="260" height="120" fill="url(#bravixGradient)" mask="url(#bravixMask)" rx="0" ry="0" />
+</svg>
