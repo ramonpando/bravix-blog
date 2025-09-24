@@ -10,58 +10,15 @@
   <!-- Include the script that builds the page and powers Decap CMS -->
   <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
   <script>
-    window.CMS_MANUAL_INIT = true;
-
-    CMS.init({
-      config: {
-        backend: {
-          name: 'test-repo',
-        },
-        media_folder: 'public/assets/blog',
-        public_folder: '/assets/blog',
-        collections: [
-          {
-            name: 'posts',
-            label: 'Blog Posts',
-            label_singular: 'Blog Post',
-            folder: 'src/pages/posts',
-            create: true,
-            delete: true,
-            fields: [
-              { name: 'title', widget: 'string', label: 'Título del Post' },
-              {
-                name: 'publishDate',
-                widget: 'datetime',
-                format: 'DD MMM YYYY',
-                date_format: 'DD MMM YYYY',
-                time_format: false,
-                label: 'Fecha de Publicación',
-              },
-              { name: 'author', widget: 'string', label: 'Autor', default: 'Bravix Team', required: false },
-              { name: 'authorURL', widget: 'string', label: 'URL del Autor', required: false },
-              { name: 'description', widget: 'string', label: 'Descripción', required: false },
-              {
-                name: 'tags',
-                widget: 'select',
-                label: 'Categorías',
-                multiple: true,
-                required: false,
-                options: ['IA', 'Automatización', 'Fintech', 'Marketing', 'Tecnología', 'Tutorial', 'Caso de Estudio']
-              },
-              { name: 'body', widget: 'markdown', label: 'Contenido del Post' },
-              {
-                name: 'layout',
-                widget: 'select',
-                default: '../../layouts/BlogPost.astro',
-                options: [
-                  { label: 'Blog Post', value: '../../layouts/BlogPost.astro' },
-                ],
-              },
-            ],
-          },
-        ],
-      }
-    });
+    if (window.netlifyIdentity) {
+      window.netlifyIdentity.on("init", user => {
+        if (!user) {
+          window.netlifyIdentity.on("login", () => {
+            document.location.href = "/admin/";
+          });
+        }
+      });
+    }
   </script>
 </body>
 </html>
