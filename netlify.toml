@@ -1,10 +1,22 @@
 # Configure Netlify builds.
 [build]
   publish = "dist/"
-  command = "pnpm run build"
+  command = "npm run build"
 
 # Request bots not to index the admin section.
 [[headers]]
-  for = "/admin/*"
+  for = "/blog_admin/*"
   [headers.values]
     X-Robots-Tag = "noindex"
+
+# Redirect /blog_admin to /blog_admin/ for SPA routing
+[[redirects]]
+  from = "/blog_admin"
+  to = "/blog_admin/"
+  status = 200
+
+# Handle SPA routing for blog admin
+[[redirects]]
+  from = "/blog_admin/*"
+  to = "/blog_admin/"
+  status = 200
