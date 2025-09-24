@@ -9,19 +9,56 @@ media_folder: public/assets/blog
 public_folder: /assets/blog
 
 collections:
-  - name: "posts"
-    label: "Blog Posts"
-    label_singular: "Blog Post"
-    folder: "src/pages/posts"
+  - name: posts
+    label: Blog Posts
+    label_singular: Blog Post
+    folder: src/pages/posts
     create: true
     delete: true
     slug: "{{slug}}"
     fields:
-      - { label: "Título del Post", name: "title", widget: "string" }
-      - { label: "Fecha de Publicación", name: "publishDate", widget: "datetime", format: "DD MMM YYYY", dateFormat: "DD MMM YYYY", timeFormat: false }
-      - { label: "Autor", name: "author", widget: "string", default: "Bravix Team", required: false }
-      - { label: "URL del Autor", name: "authorURL", widget: "string", required: false }
-      - { label: "Descripción", name: "description", widget: "string", required: false }
-      - { label: "Categorías", name: "tags", widget: "select", multiple: true, required: false, options: ["IA", "Automatización", "Fintech", "Marketing", "Tecnología", "Tutorial", "Caso de Estudio"] }
-      - { label: "Contenido del Post", name: "body", widget: "markdown" }
-      - { label: "Layout", name: "layout", widget: "select", default: "../../layouts/BlogPost.astro", options: [{ label: "Blog Post", value: "../../layouts/BlogPost.astro" }] }
+      - label: Título del Post
+        name: title
+        widget: string
+      - label: Fecha de Publicación
+        name: publishDate
+        widget: datetime
+        format: DD MMM YYYY
+        dateFormat: DD MMM YYYY
+        timeFormat: false
+      - label: Autor
+        name: author
+        widget: string
+        default: Bravix Team
+        required: false
+      - label: URL del Autor
+        name: authorURL
+        widget: string
+        required: false
+      - label: Descripción
+        name: description
+        widget: string
+        required: false
+      - label: Categorías
+        name: tags
+        widget: select
+        multiple: true
+        required: false
+        options:
+          - IA
+          - Automatización
+          - Fintech
+          - Marketing
+          - Tecnología
+          - Tutorial
+          - Caso de Estudio
+      - label: Contenido del Post
+        name: body
+        widget: markdown
+      - label: Layout
+        name: layout
+        widget: select
+        default: ../../layouts/BlogPost.astro
+        options:
+          - label: Blog Post
+            value: ../../layouts/BlogPost.astro
