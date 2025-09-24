@@ -3,7 +3,7 @@ import DecapCMS from 'astro-decap-cms';
 
 // https://astro.build/config
 export default defineConfig({
-  base: '/blog',
+  // Remove base path for now - will configure in deployment
   vite: {
     build: {
       rollupOptions: {
@@ -13,7 +13,7 @@ export default defineConfig({
   },
   integrations: [
     DecapCMS({
-      adminRoute: '/blog_admin',
+      adminRoute: '/admin',
       config: {
         // Use Netlify's "Git Gateway" authentication and target our default branch
         backend: {
@@ -22,7 +22,7 @@ export default defineConfig({
         },
         // Configure where our media assets are stored & served from
         media_folder: 'public/assets/blog',
-        public_folder: '/blog/assets/blog',
+        public_folder: '/assets/blog',
         // Configure the content collections
         collections: [
           {

@@ -5,18 +5,18 @@
 
 # Request bots not to index the admin section.
 [[headers]]
-  for = "/blog_admin/*"
+  for = "/admin/*"
   [headers.values]
     X-Robots-Tag = "noindex"
 
-# Redirect /blog_admin to /blog_admin/ for SPA routing
+# Redirect /admin to /admin/ for SPA routing
 [[redirects]]
-  from = "/blog_admin"
-  to = "/blog_admin/"
+  from = "/admin"
+  to = "/admin/"
   status = 200
 
 # Handle SPA routing for blog admin
 [[redirects]]
-  from = "/blog_admin/*"
-  to = "/blog_admin/"
+  from = "/admin/*"
+  to = "/admin/"
   status = 200
