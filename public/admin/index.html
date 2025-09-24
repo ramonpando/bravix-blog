@@ -14,7 +14,12 @@
     window.CMS.init({
       config: {
         backend: {
-          name: 'test-repo'
+          name: 'github',
+          repo: 'ramonpando/bravix-blog',
+          branch: 'main',
+          base_url: 'https://api.netlify.com',
+          auth_endpoint: 'auth',
+          site_domain: 'www.bravix.com.mx'
         },
         media_folder: 'public/assets/blog',
         public_folder: '/blog/assets/blog',
