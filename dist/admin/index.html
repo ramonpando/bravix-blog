@@ -5,10 +5,38 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="robots" content="noindex" />
   <title>Bravix Blog - Admin</title>
-  <link href="./config.yml" type="text/yaml" rel="cms-config-url">
 </head>
 <body>
   <!-- Include the script that builds the page and powers Decap CMS -->
   <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
+  <script>
+    window.CMS_MANUAL_INIT = true;
+    window.CMS.init({
+      config: {
+        backend: {
+          name: 'github',
+          repo: 'ramonpando/bravix-blog',
+          branch: 'main'
+        },
+        media_folder: 'public/assets/blog',
+        public_folder: '/blog/assets/blog',
+        collections: [{
+          name: 'posts',
+          label: 'Blog Posts',
+          folder: 'src/pages/posts',
+          create: true,
+          slug: '{{slug}}',
+          fields: [
+            {label: 'Title', name: 'title', widget: 'string'},
+            {label: 'Publish Date', name: 'publishDate', widget: 'datetime'},
+            {label: 'Description', name: 'description', widget: 'string', required: false},
+            {label: 'Author', name: 'author', widget: 'string', default: 'Bravix Team'},
+            {label: 'Body', name: 'body', widget: 'markdown'},
+            {label: 'Layout', name: 'layout', widget: 'hidden', default: '../../layouts/BlogPost.astro'}
+          ]
+        }]
+      }
+    });
+  </script>
 </body>
 </html>
