@@ -1,13 +1,16 @@
-FROM httpd:2.4-alpine
+FROM node:18-alpine
+
+# Install serve package globally
+RUN npm install -g serve
 
 # Copy the built static files
-COPY dist/ /usr/local/apache2/htdocs/
+COPY dist/ /app
 
-# Create simple Apache config
-RUN echo "ServerName localhost" >> /usr/local/apache2/conf/httpd.conf
+# Set working directory
+WORKDIR /app
 
 # Expose port 80
 EXPOSE 80
 
-# Start Apache
-CMD ["httpd-foreground"]
+# Start serve on port 80
+CMD ["serve", "-s", ".", "-p", "80"]
