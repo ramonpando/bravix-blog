@@ -7,8 +7,11 @@ export default defineConfig({
   vite: {
     build: {
       rollupOptions: {
-        external: ['#home-directory']
+        external: ['#home-directory', 'path', 'fs', 'url', 'module']
       }
+    },
+    define: {
+      global: 'window'
     }
   },
   integrations: [
