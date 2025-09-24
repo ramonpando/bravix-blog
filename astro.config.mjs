@@ -3,7 +3,7 @@ import DecapCMS from 'astro-decap-cms';
 
 // https://astro.build/config
 export default defineConfig({
-  // Remove base path for now - will configure in deployment
+  base: '/blog',
   vite: {
     build: {
       rollupOptions: {
