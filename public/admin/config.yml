@@ -2,7 +2,7 @@ backend:
   name: github
   repo: ramonpando/bravix-blog
   branch: main
-  base_url: https://decap-oauth-provider.netlify.app
+  base_url: https://decapcms-oauth.herokuapp.com
   auth_endpoint: auth
 
 media_folder: public/assets/blog
