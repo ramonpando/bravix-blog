@@ -4,3 +4,5 @@ node_modules
 .vscode
 *.md
 .env*
+.DS_Store
+*.log
